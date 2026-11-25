@@ -1,0 +1,34 @@
+{
+  "cg.pak": {
+    "sha256": "cef923cb6bf1a8014a71f8447f2009f5e09e24e9c5ec13e61dcca7b885d9e33d",
+    "size": 138277516
+  },
+  "data.pak": {
+    "sha256": "6770223dff14e74c29e264541f054a2e18e4dbba3b65473fe94b79d4e3155bf8",
+    "size": 6758988
+  },
+  "KaigenSeito.exe": {
+    "sha256": "d3f21e3dc26b6c45e098c9e71ea94374c2e68443c1d2a728aaca3696aebe9e6c",
+    "size": 151552
+  },
+  "mpeg.pak": {
+    "sha256": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0",
+    "size": 3580536
+  },
+  "script.pak": {
+    "sha256": "3b0eb9285071e7e220a1445792524c41438570332de2a2a5739744413fecbcb3",
+    "size": 1255486
+  },
+  "sound.pak": {
+    "sha256": "a47cd54363b5944e9be2c43bc4eb5bc4fa173ad6a143e04054d9aab53c8b9364",
+    "size": 66344912
+  },
+  "system.dll": {
+    "sha256": "b370d5f3c0086d1bf877432ef8415f3f70a5378c635b19b66399924f712451a5",
+    "size": 1028096
+  },
+  "system.pak": {
+    "sha256": "1e11ca9e20a4718526668b6e2be2400ba47513999ca9e1ec0afe75f56c2d5992",
+    "size": 1057357
+  }
+}

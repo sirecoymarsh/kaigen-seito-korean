@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "release": "v2026.11.25-r4a",
+  "date_kst": "2026-11-25",
+  "checks": [
+    "install: 7 changed/added files plus 2 unchanged files equal verified runtime hashes",
+    "verify command accepts exact target",
+    "repeat install is idempotent",
+    "restore: 6 originals restored and added DLL removed",
+    "repeat restore is idempotent",
+    "wrong original rejected before mutation",
+    "corrupt delta rejected before mutation",
+    "unrelated existing DLL preserved and rejected"
+  ],
+  "save_and_settings_sentinels_unchanged": true,
+  "personal_game_and_saves_accessed": false,
+  "game_started": false,
+  "target_identity": {
+    "cg.pak": "fae4062a013f7f45a5921d09ba1a6811d4bc3ff2d08fc7188e12c793bb141c91",
+    "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+    "KaigenSeito.exe": "0508bc28ce8f7466dfbd007e8872a0a9396ac8e7fe51c091407882f3ae558024",
+    "script.pak": "e532f119b689c82e3269c3e285012693edfc636aca1daf5118447446310ccb6f",
+    "system.dll": "a7d92deca17ed8b38a706f0b63d680ef7f12b2ca1b9ffedd8a539e566ef02ae6",
+    "system.pak": "5ae031a04f245d67bf52ae83c7d4956b0ab31a87bb0b5bdedb13d7d6b1d1cea2",
+    "ko.dll": "01abd72213666e5856bdb25c6945d68b9c557045883482a352ac750650dd6c7a"
+  },
+  "runtime_evidence": "Reused prior r4a/r4b native verification; no new playthrough.",
+  "ui_folder_picker": "not interactively tested; command-line install/verify/restore tested under Windows PowerShell"
+}

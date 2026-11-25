@@ -1,0 +1,141 @@
+{
+  "schema": "kaigen-seito-korean-hdiff-v1",
+  "version": "v2026.11.25-r4a",
+  "translator_model": "Codex internal",
+  "translation_provenance": "Existing Codex-authored Korean localization and r4a integration snapshot; no scenario retranslation during packaging.",
+  "patcher": {
+    "path": "tools/hpatchz.exe",
+    "version": "HDiffPatch 5.1.3 windows64",
+    "size": 515072,
+    "sha256": "9703c694b5955c576d9f0e26e98b60941f0bbb53b382b1f1988d75d461e580cb"
+  },
+  "unchanged": [
+    {
+      "path": "sound.pak",
+      "sha256": "a47cd54363b5944e9be2c43bc4eb5bc4fa173ad6a143e04054d9aab53c8b9364",
+      "size": 66344912
+    },
+    {
+      "path": "mpeg.pak",
+      "sha256": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0",
+      "size": 3580536
+    }
+  ],
+  "files": [
+    {
+      "path": "cg.pak",
+      "kind": "delta",
+      "source": {
+        "sha256": "cef923cb6bf1a8014a71f8447f2009f5e09e24e9c5ec13e61dcca7b885d9e33d",
+        "size": 138277516
+      },
+      "target": {
+        "size": 137607165,
+        "sha256": "fae4062a013f7f45a5921d09ba1a6811d4bc3ff2d08fc7188e12c793bb141c91"
+      },
+      "payload": "patches/cg.pak.hdiff",
+      "patch": {
+        "size": 14085442,
+        "sha256": "1c86e6590e200fa4dedef44c3c12c5d4b0ec77de1c7ca3246f96a08ba56c195a"
+      }
+    },
+    {
+      "path": "data.pak",
+      "kind": "delta",
+      "source": {
+        "sha256": "6770223dff14e74c29e264541f054a2e18e4dbba3b65473fe94b79d4e3155bf8",
+        "size": 6758988
+      },
+      "target": {
+        "size": 6699371,
+        "sha256": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309"
+      },
+      "payload": "patches/data.pak.hdiff",
+      "patch": {
+        "size": 616389,
+        "sha256": "c512bfbbf710c849c5121d15929bd19da5b2b0c93939a9eb8c8ffcc165e37364"
+      }
+    },
+    {
+      "path": "KaigenSeito.exe",
+      "kind": "delta",
+      "source": {
+        "sha256": "d3f21e3dc26b6c45e098c9e71ea94374c2e68443c1d2a728aaca3696aebe9e6c",
+        "size": 151552
+      },
+      "target": {
+        "size": 155648,
+        "sha256": "0508bc28ce8f7466dfbd007e8872a0a9396ac8e7fe51c091407882f3ae558024"
+      },
+      "payload": "patches/KaigenSeito.exe.hdiff",
+      "patch": {
+        "size": 1200,
+        "sha256": "e23f4e6732ff9b6346a1b48ca3cc1a3a993032620e6f61792893cc993e126f3d"
+      }
+    },
+    {
+      "path": "script.pak",
+      "kind": "delta",
+      "source": {
+        "sha256": "3b0eb9285071e7e220a1445792524c41438570332de2a2a5739744413fecbcb3",
+        "size": 1255486
+      },
+      "target": {
+        "size": 1279578,
+        "sha256": "e532f119b689c82e3269c3e285012693edfc636aca1daf5118447446310ccb6f"
+      },
+      "payload": "patches/script.pak.hdiff",
+      "patch": {
+        "size": 222527,
+        "sha256": "8e6cd10447a544224958eb224f6fcc8f74722439b21b586f4c3415ca13f86dbc"
+      }
+    },
+    {
+      "path": "system.dll",
+      "kind": "delta",
+      "source": {
+        "sha256": "b370d5f3c0086d1bf877432ef8415f3f70a5378c635b19b66399924f712451a5",
+        "size": 1028096
+      },
+      "target": {
+        "size": 1028096,
+        "sha256": "a7d92deca17ed8b38a706f0b63d680ef7f12b2ca1b9ffedd8a539e566ef02ae6"
+      },
+      "payload": "patches/system.dll.hdiff",
+      "patch": {
+        "size": 3964,
+        "sha256": "a67050fb83f25cdb87846164540103834da89aea71ef52b46e301baf7a4db876"
+      }
+    },
+    {
+      "path": "system.pak",
+      "kind": "delta",
+      "source": {
+        "sha256": "1e11ca9e20a4718526668b6e2be2400ba47513999ca9e1ec0afe75f56c2d5992",
+        "size": 1057357
+      },
+      "target": {
+        "size": 1057357,
+        "sha256": "5ae031a04f245d67bf52ae83c7d4956b0ab31a87bb0b5bdedb13d7d6b1d1cea2"
+      },
+      "payload": "patches/system.pak.hdiff",
+      "patch": {
+        "size": 72,
+        "sha256": "117aa1c1e8b1b7c9aa050919bb2039312e951e60f2190e51a24248d189484281"
+      }
+    },
+    {
+      "path": "ko.dll",
+      "kind": "added",
+      "target": {
+        "size": 296448,
+        "sha256": "01abd72213666e5856bdb25c6945d68b9c557045883482a352ac750650dd6c7a"
+      },
+      "payload": "files/ko.dll",
+      "patch": {
+        "size": 296448,
+        "sha256": "01abd72213666e5856bdb25c6945d68b9c557045883482a352ac750650dd6c7a"
+      }
+    }
+  ]
+}

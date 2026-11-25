@@ -1,0 +1,10 @@
+{
+  "hdiffz.exe": {
+    "sha256": "f5ed7ac622a2daf4a31cc21ffa8ea1717f92323e79ef5ae695c5c9238a282f52",
+    "size": 1489920
+  },
+  "hpatchz.exe": {
+    "sha256": "9703c694b5955c576d9f0e26e98b60941f0bbb53b382b1f1988d75d461e580cb",
+    "size": 515072
+  }
+}
