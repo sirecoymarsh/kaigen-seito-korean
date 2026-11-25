@@ -33,7 +33,6 @@ HDiffPatch 저작자: housisong. 자세한 저작권·사용 조건은 각 고�
 
 게임 원본과 그로부터 유래한 자료, 공식 공략·아이콘의 권리는 니트로플러스 등 해당 권리자에게 있습니다. 이 패치는 비공식 사용자 패치이며 게임 자체나 원본 음악·영상의 배포물이 아닙니다. 패치 데이터와 한국어 런타임에 HDiffPatch의 MIT 라이선스를 자동 적용하지 않습니다.
 
-맑은 고딕은 Windows에서 제공하는 Microsoft 글꼴이며 이 저장소에는 포함하지 않습니다. Locale Emulator도 포함하지 않고 사용자가 별도로 준비합니다.
+맑은 고딕은 Windows에서 제공하는 Microsoft 글꼴이며 이 저장소에는 포함하지 않습니다. r4b 부터는 Locale Emulator 가 필요 없습니다.
 
 - 공식 공략: https://www.nitroplus.co.jp/pc/lineup/into_10/kaigen.php
-- Locale Emulator: https://github.com/xupefei/Locale-Emulator

@@ -10,15 +10,17 @@
 - Python 3.11 이상, Windows x64.
 
 ```powershell
-python .\scripts\build_release.py --original 'P:\inputs\original' --target 'P:\inputs\verified-korean' --hdiffz 'P:\tools\hdiffz.exe' --hpatchz 'P:\tools\hpatchz.exe' --original-catalog .\docs\original-files.json --target-catalog .\docs\target-files.json --output 'P:\build\new-payload'
+python .\scripts\build_release.py --original 'P:\inputs\original' --target 'P:\inputs\verified-korean' --hdiffz 'P:\tools\hdiffz.exe' --hpatchz 'P:\tools\hpatchz.exe' --original-catalog .\docs\original-files.json --target-catalog .\docs\target-files.json --output 'P:\build\new-payload' --version v2026.11.25-r4b --previous 'P:\build\previous-releases.json'
 ```
+
+`--previous` 는 이전 판들의 결과 해시 목록이며, 설치기가 그 판에서 업그레이드할 수 있게 manifest 에 들어갑니다. 한국어 통합본 자체(대본·ko.dll·실행 파일 패치)는 작업 저장소의 `fixes/review-fixes-r4b-20261125/build_r4b.py` 로 만듭니다.
 
 출력은 새 폴더를 지정합니다. 이미 존재하는 차분 파일은 덮어쓰지 않습니다. 생성기는 원본과 목표의 해시를 먼저 검사하고, 각 차분 생성 뒤 HDiffPatch의 적용 비교도 실행합니다. 설치기와 문서는 현재 저장소에서 함께 복사해 배포합니다. 생성된 `manifest.json`과 페이로드를 서로 다른 버전과 섞지 마세요.
 
 새 설치 검사가 필요할 때:
 
 ```powershell
-python .\scripts\test_release.py --original 'P:\inputs\original' --package 'P:\build\package' --work 'P:\build\new-validation-work' --report 'P:\build\validation.json'
+python .\scripts\test_release.py --original 'P:\inputs\original' --package 'P:\build\package' --work 'P:\build\new-validation-work' --report 'P:\build\validation.json' --previous-package 'P:\build\previous-package'
 ```
 
 `--work`는 존재하지 않는 전용 임시 폴더여야 합니다. 이 검사는 게임을 실행하지 않고 원본 8개 파일의 시험 사본과 가짜 저장·설정 표본으로 설치, 결과 해시, 재설치, 복원, 손상 거부를 확인합니다. 사용자 저장을 가져오지 않습니다. 검사 뒤 이 전용 폴더는 결과를 확인하고 삭제할 수 있습니다.

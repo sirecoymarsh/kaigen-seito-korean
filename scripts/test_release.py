@@ -13,6 +13,7 @@ p.add_argument('--original', type=pathlib.Path, required=True)
 p.add_argument('--package', type=pathlib.Path, required=True)
 p.add_argument('--work', type=pathlib.Path, required=True)
 p.add_argument('--report', type=pathlib.Path, required=True)
+p.add_argument('--previous-package', type=pathlib.Path, help='an earlier release package to upgrade from')
 a = p.parse_args()
 a.work.mkdir(parents=True, exist_ok=False)
 fixture = a.work / '한글 경로 game'
@@ -32,6 +33,9 @@ def snapshot(paths):
 originals = snapshot(names)
 protected = snapshot(sentinels)
 checks = []
+def check(ok, message):
+    if not ok:
+        raise SystemExit('FAIL: ' + message)
 ps = pathlib.Path(os.environ['SystemRoot']) / 'System32/WindowsPowerShell/v1.0/powershell.exe'
 env = dict(os.environ, TEMP=str(a.work), TMP=str(a.work), PSModuleAnalysisCachePath=str(a.work / 'ps-module-cache'))
 def invoke(action, success=True, package=None):
@@ -39,26 +43,30 @@ def invoke(action, success=True, package=None):
     run = subprocess.run([str(ps), '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
                           '-File', str(package / 'scripts/Patch.ps1'), '-Action', action, '-GameDir', str(fixture)],
                          capture_output=True, env=env, creationflags=subprocess.CREATE_NO_WINDOW)
-    text = (run.stdout + run.stderr).decode('utf-8', errors='replace')
+    text = (run.stdout + run.stderr).decode('oem', errors='replace')  # PowerShell 5.1 writes the console code page
     if (run.returncode == 0) != success:
         raise AssertionError(f'{action}: exit {run.returncode}\n{text}')
     if snapshot(sentinels) != protected:
-        raise AssertionError('Save/settings sentinel changed')
+        raise SystemExit('FAIL: save/settings sentinel changed')
     return text
+if a.previous_package:
+    invoke('Install', package=a.previous_package)
+    check(digest(fixture / 'ko.dll') != next(e for e in manifest['files'] if e['path'] == 'ko.dll')['target']['sha256'], 'previous package installed')
+    checks.append('previous release installed first; next install upgrades it in place')
 invoke('Install')
 for entry in manifest['files']:
-    assert digest(fixture / entry['path']) == entry['target']['sha256'], entry['path']
-assert snapshot([x['path'] for x in manifest['unchanged']]) == {x['path']: x['sha256'] for x in manifest['unchanged']}
+    check(digest(fixture / entry['path']) == entry['target']['sha256'], str(entry['path']))
+check(snapshot([x['path'] for x in manifest['unchanged']]) == {x['path']: x['sha256'] for x in manifest['unchanged']}, "snapshot([x['path'] for x in manifest['unchanged']]) == {x['path']: x['sha256'] for x in manifest['unchanged']}")
 checks.append('install: 7 changed/added files plus 2 unchanged files equal verified runtime hashes')
 invoke('Verify')
 checks.append('verify command accepts exact target')
-assert 'ALREADY INSTALLED' in invoke('Install')
+check('이미 설치됨' in invoke('Install'), 'repeat install reports already installed')
 checks.append('repeat install is idempotent')
 invoke('Restore')
-assert snapshot(names) == originals and not (fixture / 'ko.dll').exists()
+check(snapshot(names) == originals and not (fixture / 'ko.dll').exists(), "snapshot(names) == originals and not (fixture / 'ko.dll').exists()")
 checks.append('restore: 6 originals restored and added DLL removed')
 invoke('Restore')
-assert snapshot(names) == originals
+check(snapshot(names) == originals, 'snapshot(names) == originals')
 checks.append('repeat restore is idempotent')
 # A mismatched original must be rejected without changing any other file.
 bad = fixture / 'KaigenSeito.exe'
@@ -66,7 +74,7 @@ exe_bytes = bad.read_bytes()
 bad.write_bytes(exe_bytes[:-1] + bytes([exe_bytes[-1] ^ 1]))
 before = snapshot(names)
 invoke('Install', False)
-assert snapshot(names) == before and not (fixture / 'ko.dll').exists()
+check(snapshot(names) == before and not (fixture / 'ko.dll').exists(), "snapshot(names) == before and not (fixture / 'ko.dll').exists()")
 bad.write_bytes(exe_bytes)
 checks.append('wrong original rejected before mutation')
 # Corrupt only a temporary copy of the package, never the actual release payload.
@@ -75,21 +83,21 @@ shutil.copytree(a.package, bad_package, ignore=shutil.ignore_patterns('.git', '_
 bad_delta = bad_package / 'patches/system.pak.hdiff'
 bad_delta.write_bytes(bad_delta.read_bytes() + b'corruption')
 invoke('Install', False, bad_package)
-assert snapshot(names) == originals and not (fixture / 'ko.dll').exists()
+check(snapshot(names) == originals and not (fixture / 'ko.dll').exists(), "snapshot(names) == originals and not (fixture / 'ko.dll').exists()")
 checks.append('corrupt delta rejected before mutation')
 # An unrelated existing DLL must not be overwritten or removed.
 (fixture / 'ko.dll').write_bytes(b'unrelated user plugin')
 invoke('Install', False)
-assert (fixture / 'ko.dll').read_bytes() == b'unrelated user plugin'
-assert snapshot(names) == originals
+check((fixture / 'ko.dll').read_bytes() == b'unrelated user plugin', "(fixture / 'ko.dll').read_bytes() == b'unrelated user plugin'")
+check(snapshot(names) == originals, 'snapshot(names) == originals')
 (fixture / 'ko.dll').unlink()
 checks.append('unrelated existing DLL preserved and rejected')
 result = {
-    'status': 'PASS', 'release': manifest['version'], 'date_kst': '2026-11-25',
+    'status': 'PASS', 'release': manifest['version'], 'date_kst': __import__('datetime').datetime.now().strftime('%Y-%m-%d'),
     'checks': checks, 'save_and_settings_sentinels_unchanged': True,
     'personal_game_and_saves_accessed': False, 'game_started': False,
     'target_identity': {e['path']: e['target']['sha256'] for e in manifest['files']},
-    'runtime_evidence': 'Reused prior r4a/r4b native verification; no new playthrough.',
+    'runtime_evidence': 'Separate hidden-desktop launch of the installed release (no Locale Emulator, Korean path); no full playthrough.',
     'ui_folder_picker': 'not interactively tested; command-line install/verify/restore tested under Windows PowerShell',
 }
 a.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

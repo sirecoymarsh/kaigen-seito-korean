@@ -28,6 +28,8 @@ def main():
     p.add_argument('--original-catalog', type=pathlib.Path, required=True)
     p.add_argument('--target-catalog', type=pathlib.Path, required=True)
     p.add_argument('--output', type=pathlib.Path, required=True)
+    p.add_argument('--version', required=True)
+    p.add_argument('--previous', type=pathlib.Path, help='JSON list of earlier releases: [{"version", "files": {name: sha256}}]')
     args = p.parse_args()
     old_catalog = json.loads(args.original_catalog.read_text(encoding='utf-8-sig'))
     new_catalog = json.loads(args.target_catalog.read_text(encoding='utf-8-sig'))
@@ -57,9 +59,8 @@ def main():
     shutil.copy2(args.hpatchz, patcher)
     result = {
         'schema': 'kaigen-seito-korean-hdiff-v1',
-        'version': 'v2026.11.25-r4a',
-        'translator_model': 'Codex internal',
-        'translation_provenance': 'Existing Codex-authored Korean localization and r4a integration snapshot; no scenario retranslation during packaging.',
+        'version': args.version,
+        'previous': json.loads(args.previous.read_text(encoding='utf-8')) if args.previous else [],
         'patcher': {'path': 'tools/hpatchz.exe', 'version': 'HDiffPatch 5.1.3 windows64', **identity(patcher)},
         'unchanged': [{'path': name, **old_catalog[name]} for name in ANCHORS],
         'files': entries,
