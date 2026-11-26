@@ -1,0 +1,31 @@
+{
+  "file": "KaigenSeito-PV-Korean.mp4",
+  "size": 9633133,
+  "sha256": "1a60dcc2af628a3effd8e96e3ed1e9db2d3829213eb0b8f5d56a8a4b77d99249",
+  "limit_bytes": 50000000,
+  "within_limit": true,
+  "encoding_reused": true,
+  "reencoded": false,
+  "codec": "H.264 High / AAC LC",
+  "dimensions": [
+    640,
+    480
+  ],
+  "fps": "30000/1001",
+  "duration_seconds": 122.7,
+  "verification_reused": {
+    "bytes": 9633133,
+    "sha256": "1a60dcc2af628a3effd8e96e3ed1e9db2d3829213eb0b8f5d56a8a4b77d99249",
+    "width": 640.0,
+    "height": 480.0,
+    "fps": 29.97002997002997,
+    "frames": 3677.0,
+    "duration_frames": 122.68923333333333,
+    "full_decode_exit": 0,
+    "full_decode_errors": "",
+    "verification_reused": true
+  },
+  "translator_model": "Codex internal",
+  "source": "https://www.youtube.com/watch?v=LfhB7dHDYTw",
+  "scope": "Standalone localized promotional video with sales end-card; game opening uses separate validated MPEG files."
+}

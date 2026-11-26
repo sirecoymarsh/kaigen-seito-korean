@@ -7,7 +7,7 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 $packageRoot = [IO.Path]::GetFullPath((Split-Path $PSScriptRoot -Parent))
-$replaceNames = @('cg.pak','data.pak','KaigenSeito.exe','script.pak','system.dll','system.pak')
+$replaceNames = @('cg.pak','data.pak','KaigenSeito.exe','script.pak','system.dll','system.pak','mpeg.pak')
 $allNames = @($replaceNames) + @('ko.dll')
 
 # Adapted from the existing DraKoI release installer: canonical paths,
@@ -98,6 +98,25 @@ function Assert-OriginalBackup {
         if ($entry.kind -eq 'delta') { Assert-File (Get-SafeChild $backupRoot $entry.path) $entry.source }
     }
 }
+function Complete-LegacyOriginalBackup {
+    # r4a/r4b did not modify mpeg.pak, so their six-file backups omit it.
+    # Validate the old backup completely before adding only that verified original.
+    $stamp = Get-SafeChild $backupRoot 'ready.json'
+    if (-not (Test-Path -LiteralPath $stamp -PathType Leaf)) { throw '백업이 불완전합니다. 원본 백업을 보존하고 확인하세요.' }
+    $missing = @()
+    foreach ($entry in $manifest.files) {
+        if ($entry.kind -ne 'delta') { continue }
+        $saved = Get-SafeChild $backupRoot $entry.path
+        if (Test-Path -LiteralPath $saved -PathType Leaf) { Assert-File $saved $entry.source }
+        elseif ($entry.path -eq 'mpeg.pak') {
+            Assert-File (Get-SafeChild $GameDir $entry.path) $entry.source
+            $missing += $entry
+        } else { throw "원본 백업 파일이 없습니다: $($entry.path)" }
+    }
+    foreach ($entry in $missing) {
+        Set-VerifiedFile (Get-SafeChild $GameDir $entry.path) (Get-SafeChild $backupRoot $entry.path) $entry.source
+    }
+}
 function Get-KnownState($entry, [string]$path) {
     # original | current | previous | missing | unknown
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { return 'missing' }
@@ -105,7 +124,7 @@ function Get-KnownState($entry, [string]$path) {
     if ($hash -eq $entry.target.sha256) { return 'current' }
     if ($entry.kind -eq 'delta' -and $hash -eq $entry.source.sha256) { return 'original' }
     foreach ($previous in @($manifest.previous)) {
-        if ($previous.files.($entry.path) -eq $hash) { return 'previous' }
+        if ($previous.files.PSObject.Properties[$entry.path] -and $previous.files.($entry.path) -eq $hash) { return 'previous' }
     }
     return 'unknown'
 }
@@ -140,7 +159,7 @@ try {
     if ($GameDir -eq [IO.Path]::GetPathRoot($GameDir)) { throw '드라이브 최상위가 아니라 게임 폴더를 선택하세요.' }
     $manifest = Get-Content -LiteralPath (Get-SafeChild $packageRoot 'manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($manifest.schema -ne 'kaigen-seito-korean-hdiff-v1') { throw '지원하지 않는 manifest 입니다.' }
-    if (@($manifest.files).Count -ne 7 -or @($manifest.files.path | Sort-Object -Unique).Count -ne 7) { throw '파일 목록이 잘못되었습니다.' }
+    if (@($manifest.files).Count -ne 8 -or @($manifest.files.path | Sort-Object -Unique).Count -ne 8) { throw '파일 목록이 잘못되었습니다.' }
     foreach ($entry in $manifest.files) {
         if ($entry.path -notin $allNames -or $entry.target.sha256 -notmatch '^[a-f0-9]{64}$') { throw '대상 정보가 잘못되었습니다.' }
         if ($entry.path -eq 'ko.dll') {
@@ -152,7 +171,7 @@ try {
     $patcher = Get-SafeChild $packageRoot $manifest.patcher.path
     Assert-File $patcher $manifest.patcher
     foreach ($anchor in $manifest.unchanged) {
-        if ($anchor.path -notin @('sound.pak','mpeg.pak')) { throw '확인용 원본 정보가 잘못되었습니다.' }
+        if ($anchor.path -notin @('sound.pak')) { throw '확인용 원본 정보가 잘못되었습니다.' }
         Assert-File (Get-SafeChild $GameDir $anchor.path) $anchor
     }
     if ($Action -eq 'Verify') {
@@ -172,6 +191,7 @@ try {
             [IO.Directory]::Move($releaseNamedBackup,$backupRoot)
         }
         if ($Action -eq 'Restore') {
+            Complete-LegacyOriginalBackup
             Assert-OriginalBackup
             foreach ($entry in $manifest.files) {
                 $path = Get-SafeChild $GameDir $entry.path
@@ -197,7 +217,7 @@ try {
             if ($entry.kind -eq 'delta' -and $state -ne 'original') { $needsBackup = $true }
         }
         if ($needsBackup -and -not (Test-Path -LiteralPath $backupRoot)) { throw '이전 패치가 깔려 있는데 원본 백업 폴더가 없습니다. 원본 게임 파일로 되돌린 뒤 다시 설치하세요.' }
-        if (Test-Path -LiteralPath $backupRoot) { Assert-OriginalBackup }
+        if (Test-Path -LiteralPath $backupRoot) { Complete-LegacyOriginalBackup; Assert-OriginalBackup }
         else {
             New-Item -ItemType Directory -Path $backupRoot | Out-Null
             foreach ($entry in $manifest.files) {

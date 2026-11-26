@@ -9,8 +9,8 @@ import pathlib
 import shutil
 import subprocess
 
-NAMES = ('cg.pak', 'data.pak', 'KaigenSeito.exe', 'script.pak', 'system.dll', 'system.pak')
-ANCHORS = ('sound.pak', 'mpeg.pak')
+NAMES = ('cg.pak', 'data.pak', 'KaigenSeito.exe', 'script.pak', 'system.dll', 'system.pak', 'mpeg.pak')
+ANCHORS = ('sound.pak',)
 
 def identity(path):
     digest = hashlib.sha256()

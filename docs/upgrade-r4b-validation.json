@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "release": "v2026.11.26-r5",
+  "date_kst": "2026-11-26",
+  "checks": [
+    "previous release installed first; next install upgrades it in place",
+    "complete original backup verified, including mpeg.pak for legacy upgrades",
+    "install: 8 changed/added files plus 1 unchanged files equal verified runtime hashes",
+    "verify command accepts exact target",
+    "repeat install is idempotent",
+    "restore: 7 originals restored and added DLL removed",
+    "repeat restore is idempotent",
+    "wrong original rejected before mutation",
+    "corrupt delta rejected before mutation",
+    "unrelated existing DLL preserved and rejected"
+  ],
+  "save_and_settings_sentinels_unchanged": true,
+  "personal_game_and_saves_accessed": false,
+  "game_started": false,
+  "target_identity": {
+    "cg.pak": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86",
+    "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+    "KaigenSeito.exe": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df",
+    "script.pak": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7",
+    "system.dll": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545",
+    "system.pak": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99",
+    "mpeg.pak": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724",
+    "ko.dll": "0f8b30ef8e5004ae11508c94715e6ab65d36061680cc85566f18a5667d3a9d01"
+  },
+  "runtime_evidence": "Reused native verification is documented separately in docs/runtime-verification.json; this test does not launch the game.",
+  "ui_folder_picker": "not interactively tested; command-line install/verify/restore tested under Windows PowerShell"
+}

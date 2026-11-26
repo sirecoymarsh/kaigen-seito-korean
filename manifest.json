@@ -1,6 +1,6 @@
 {
   "schema": "kaigen-seito-korean-hdiff-v1",
-  "version": "v2026.11.25-r4b",
+  "version": "v2026.11.26-r5",
   "previous": [
     {
       "version": "v2026.11.25-r4a",
@@ -11,7 +11,21 @@
         "script.pak": "e532f119b689c82e3269c3e285012693edfc636aca1daf5118447446310ccb6f",
         "system.dll": "a7d92deca17ed8b38a706f0b63d680ef7f12b2ca1b9ffedd8a539e566ef02ae6",
         "system.pak": "5ae031a04f245d67bf52ae83c7d4956b0ab31a87bb0b5bdedb13d7d6b1d1cea2",
-        "ko.dll": "01abd72213666e5856bdb25c6945d68b9c557045883482a352ac750650dd6c7a"
+        "ko.dll": "01abd72213666e5856bdb25c6945d68b9c557045883482a352ac750650dd6c7a",
+        "mpeg.pak": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0"
+      }
+    },
+    {
+      "version": "v2026.11.25-r4b",
+      "files": {
+        "cg.pak": "fae4062a013f7f45a5921d09ba1a6811d4bc3ff2d08fc7188e12c793bb141c91",
+        "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+        "KaigenSeito.exe": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df",
+        "script.pak": "7594b7a05a176866d7a5f670e1e2c85c0b9f7a196542a6b33b3a5f6b2ce29fef",
+        "system.dll": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545",
+        "system.pak": "5ae031a04f245d67bf52ae83c7d4956b0ab31a87bb0b5bdedb13d7d6b1d1cea2",
+        "ko.dll": "41684446eb9131052807fb7212b2d03bcdc800c2d78e86229f4ba2b987d57c2a",
+        "mpeg.pak": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0"
       }
     }
   ],
@@ -26,11 +40,6 @@
       "path": "sound.pak",
       "sha256": "a47cd54363b5944e9be2c43bc4eb5bc4fa173ad6a143e04054d9aab53c8b9364",
       "size": 66344912
-    },
-    {
-      "path": "mpeg.pak",
-      "sha256": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0",
-      "size": 3580536
     }
   ],
   "files": [
@@ -42,13 +51,13 @@
         "size": 138277516
       },
       "target": {
-        "size": 137607165,
-        "sha256": "fae4062a013f7f45a5921d09ba1a6811d4bc3ff2d08fc7188e12c793bb141c91"
+        "size": 138176908,
+        "sha256": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86"
       },
       "payload": "patches/cg.pak.hdiff",
       "patch": {
-        "size": 14085442,
-        "sha256": "1c86e6590e200fa4dedef44c3c12c5d4b0ec77de1c7ca3246f96a08ba56c195a"
+        "size": 14628036,
+        "sha256": "fd59e01b3ed97276f823e48d75d1a20ba94091b5184039687cc77db18ad93b37"
       }
     },
     {
@@ -93,13 +102,13 @@
         "size": 1255486
       },
       "target": {
-        "size": 1279535,
-        "sha256": "7594b7a05a176866d7a5f670e1e2c85c0b9f7a196542a6b33b3a5f6b2ce29fef"
+        "size": 1419760,
+        "sha256": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7"
       },
       "payload": "patches/script.pak.hdiff",
       "patch": {
-        "size": 222432,
-        "sha256": "6480a3f7069fec5c574af5d62feb981f615fd78117fdda590180daea6d6216cc"
+        "size": 370909,
+        "sha256": "8c95112817bddf33a59ae05e38f32822ef42b4cdb7b2b66402d5d243382de97c"
       }
     },
     {
@@ -127,26 +136,43 @@
         "size": 1057357
       },
       "target": {
-        "size": 1057357,
-        "sha256": "5ae031a04f245d67bf52ae83c7d4956b0ab31a87bb0b5bdedb13d7d6b1d1cea2"
+        "size": 1057361,
+        "sha256": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99"
       },
       "payload": "patches/system.pak.hdiff",
       "patch": {
-        "size": 72,
-        "sha256": "117aa1c1e8b1b7c9aa050919bb2039312e951e60f2190e51a24248d189484281"
+        "size": 112,
+        "sha256": "91f1bbb6caef68ea29a95e871f29cef70a6a7a4bf479618264487800bdfdf95a"
+      }
+    },
+    {
+      "path": "mpeg.pak",
+      "kind": "delta",
+      "source": {
+        "sha256": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0",
+        "size": 3580536
+      },
+      "target": {
+        "size": 103477935,
+        "sha256": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724"
+      },
+      "payload": "patches/mpeg.pak.hdiff",
+      "patch": {
+        "size": 41272537,
+        "sha256": "bd69c1d36cdf5d2de0b1f5efc69d2264396a77347e06a7b67c010ac90df50424"
       }
     },
     {
       "path": "ko.dll",
       "kind": "added",
       "target": {
-        "size": 291840,
-        "sha256": "41684446eb9131052807fb7212b2d03bcdc800c2d78e86229f4ba2b987d57c2a"
+        "size": 45675008,
+        "sha256": "0f8b30ef8e5004ae11508c94715e6ab65d36061680cc85566f18a5667d3a9d01"
       },
       "payload": "files/ko.dll",
       "patch": {
-        "size": 291840,
-        "sha256": "41684446eb9131052807fb7212b2d03bcdc800c2d78e86229f4ba2b987d57c2a"
+        "size": 45675008,
+        "sha256": "0f8b30ef8e5004ae11508c94715e6ab65d36061680cc85566f18a5667d3a9d01"
       }
     }
   ]

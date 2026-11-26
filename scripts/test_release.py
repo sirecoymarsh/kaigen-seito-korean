@@ -55,16 +55,20 @@ if a.previous_package:
     checks.append('previous release installed first; next install upgrades it in place')
 invoke('Install')
 for entry in manifest['files']:
+    if entry['kind'] == 'delta':
+        check(digest(fixture / '.kaigen-ko-backup' / entry['path']) == entry['source']['sha256'], 'original backup: ' + entry['path'])
+checks.append('complete original backup verified, including mpeg.pak for legacy upgrades')
+for entry in manifest['files']:
     check(digest(fixture / entry['path']) == entry['target']['sha256'], str(entry['path']))
 check(snapshot([x['path'] for x in manifest['unchanged']]) == {x['path']: x['sha256'] for x in manifest['unchanged']}, "snapshot([x['path'] for x in manifest['unchanged']]) == {x['path']: x['sha256'] for x in manifest['unchanged']}")
-checks.append('install: 7 changed/added files plus 2 unchanged files equal verified runtime hashes')
+checks.append(f"install: {len(manifest['files'])} changed/added files plus {len(manifest['unchanged'])} unchanged files equal verified runtime hashes")
 invoke('Verify')
 checks.append('verify command accepts exact target')
 check('이미 설치됨' in invoke('Install'), 'repeat install reports already installed')
 checks.append('repeat install is idempotent')
 invoke('Restore')
 check(snapshot(names) == originals and not (fixture / 'ko.dll').exists(), "snapshot(names) == originals and not (fixture / 'ko.dll').exists()")
-checks.append('restore: 6 originals restored and added DLL removed')
+checks.append(f"restore: {sum(e['kind']=='delta' for e in manifest['files'])} originals restored and added DLL removed")
 invoke('Restore')
 check(snapshot(names) == originals, 'snapshot(names) == originals')
 checks.append('repeat restore is idempotent')
@@ -97,7 +101,7 @@ result = {
     'checks': checks, 'save_and_settings_sentinels_unchanged': True,
     'personal_game_and_saves_accessed': False, 'game_started': False,
     'target_identity': {e['path']: e['target']['sha256'] for e in manifest['files']},
-    'runtime_evidence': 'Separate hidden-desktop launch of the installed release (no Locale Emulator, Korean path); no full playthrough.',
+    'runtime_evidence': 'Reused native verification is documented separately in docs/runtime-verification.json; this test does not launch the game.',
     'ui_folder_picker': 'not interactively tested; command-line install/verify/restore tested under Windows PowerShell',
 }
 a.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

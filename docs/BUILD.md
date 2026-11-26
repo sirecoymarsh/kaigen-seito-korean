@@ -1,28 +1,22 @@
 # 배포 패치 재생성
 
-이 저장소는 배포용 차분, 설치기, 검사 도구와 현재 검증된 스냅샷의 해시를 보관합니다. 시나리오 번역 작업공간이나 게임 전체의 소스 빌드 저장소는 아닙니다.
+이 저장소는 **검증된 통합본에서 배포 차분을 만드는 도구·설치기·검사기·결과 해시**를 보관합니다. 게임 전체 소스나 시나리오 작업공간을 포함하지 않습니다.
 
-필요한 입력:
-
-- `docs/original-files.json`과 일치하는 직접 보유한 원본 게임.
-- `docs/target-files.json`과 일치하는 검증된 한국어 통합본.
-- 공식 HDiffPatch 5.1.3 Windows x64의 `hdiffz.exe`, `hpatchz.exe`. 다운로드 ZIP 해시는 `THIRD_PARTY.md`를 확인합니다.
-- Python 3.11 이상, Windows x64.
+필요한 입력은 직접 보유한 [지원 원본](original-files.json), [검증된 통합본](target-files.json), HDiffPatch 5.1.3 Windows x64, Python 3.11 이상입니다. 공식 도구 출처·라이선스는 [THIRD_PARTY.md](../THIRD_PARTY.md)에 있습니다.
 
 ```powershell
-python .\scripts\build_release.py --original 'P:\inputs\original' --target 'P:\inputs\verified-korean' --hdiffz 'P:\tools\hdiffz.exe' --hpatchz 'P:\tools\hpatchz.exe' --original-catalog .\docs\original-files.json --target-catalog .\docs\target-files.json --output 'P:\build\new-payload' --version v2026.11.25-r4b --previous 'P:\build\previous-releases.json'
+python .\scripts\build_release.py --original 'P:\inputs\original' --target 'P:\inputs\verified-korean' --hdiffz 'P:\tools\hdiffz.exe' --hpatchz 'P:\tools\hpatchz.exe' --original-catalog .\docs\original-files.json --target-catalog .\docs\target-files.json --output 'P:\build\new-payload' --version v2026.11.26-r5 --previous .\docs\previous-releases.json
 ```
 
-`--previous` 는 이전 판들의 결과 해시 목록이며, 설치기가 그 판에서 업그레이드할 수 있게 manifest 에 들어갑니다. 한국어 통합본 자체(대본·ko.dll·실행 파일 패치)는 작업 저장소의 `fixes/review-fixes-r4b-20261125/build_r4b.py` 로 만듭니다.
+새 출력 폴더를 지정합니다. 이미 존재하는 차분은 덮어쓰지 않습니다. 원본·목표 해시를 먼저 검사하고 7개 차분을 생성한 뒤 도구 자체의 적용 비교를 수행합니다. sound.pak는 변경하지 않습니다. ko.dll은 추가 파일입니다. 설치기와 문서는 같은 릴리스의 것을 복사하고 서로 다른 manifest·페이로드를 섞지 않습니다.
 
-출력은 새 폴더를 지정합니다. 이미 존재하는 차분 파일은 덮어쓰지 않습니다. 생성기는 원본과 목표의 해시를 먼저 검사하고, 각 차분 생성 뒤 HDiffPatch의 적용 비교도 실행합니다. 설치기와 문서는 현재 저장소에서 함께 복사해 배포합니다. 생성된 `manifest.json`과 페이로드를 서로 다른 버전과 섞지 마세요.
-
-새 설치 검사가 필요할 때:
+`previous-releases.json`은 r4a·r4b 결과의 허용 해시입니다. 예전 버전은 mpeg.pak를 바꾸지 않았으므로 그 원본 해시도 포함합니다. 설치기는 기존 백업 6개 전체와 게임 쪽 mpeg.pak 원본을 확인한 뒤에만 누락된 MPEG 백업을 추가합니다.
 
 ```powershell
-python .\scripts\test_release.py --original 'P:\inputs\original' --package 'P:\build\package' --work 'P:\build\new-validation-work' --report 'P:\build\validation.json' --previous-package 'P:\build\previous-package'
+python .\scripts\test_release.py --original 'P:\inputs\original' --package 'P:\build\package' --work 'P:\build\new-validation-work' --report 'P:\build\validation.json'
+python .\scripts\test_release.py --original 'P:\inputs\original' --package 'P:\build\package' --previous-package 'P:\build\previous-package' --work 'P:\build\new-upgrade-work' --report 'P:\build\upgrade.json'
 ```
 
-`--work`는 존재하지 않는 전용 임시 폴더여야 합니다. 이 검사는 게임을 실행하지 않고 원본 8개 파일의 시험 사본과 가짜 저장·설정 표본으로 설치, 결과 해시, 재설치, 복원, 손상 거부를 확인합니다. 사용자 저장을 가져오지 않습니다. 검사 뒤 이 전용 폴더는 결과를 확인하고 삭제할 수 있습니다.
+검사 폴더는 존재하지 않는 P: 전용 폴더로 지정합니다. 원본 시험 사본과 가짜 저장·설정으로 검사하며 사용자 저장이나 게임 실행은 이용하지 않습니다. 배포 차분 적용 결과가 네이티브 검증 통합본과 같은지는 해시로 연결합니다. 새 패키징을 새 전체 플레이 검증으로 표시하지 않습니다.
 
-최초 게시 시 검사 결과: [release-validation.json](release-validation.json). 기존 네이티브 게임 검증과 이번 배포 검증의 구분: [STATUS.md](STATUS.md).
+릴리스 ZIP에는 저장소의 배포 파일만 넣고 `.git`, 원본 PAK·EXE, 개인 SAVE·INI, 개발 로그·임시 실행 사본은 제외합니다. 별도 PV는 기존 완성 MP4를 해시로 검증해 복사하며, 게임용 MPEG는 기존 검증 규격 그대로 재사용합니다.
