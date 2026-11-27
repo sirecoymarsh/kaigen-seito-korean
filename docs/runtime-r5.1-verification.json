@@ -1,0 +1,129 @@
+{
+  "version": "v2026.11.27-r5.1",
+  "dll_sha256": "333a1c230ceab26cd12acc939e3683a68f21e5edd63adeb58aa2c72d84fb69f7",
+  "baseline_comparison": "r5 automatic governor gate did not select surrender; r5 removed SC_SIZE/SC_MAXIMIZE after creating a thick-frame window.",
+  "native_cases": [
+    {
+      "id": "governor-assist",
+      "passed": true,
+      "report_sha256": "dd92842fd63dcd394edf9b30de4f7a980db3df67977b3ef4be36909f676edda3"
+    },
+    {
+      "id": "governor-auto-5100",
+      "passed": true,
+      "report_sha256": "1a7090ef0a33a2153f3b707de939a769dd6d0487bed501efa61c4e33087c9359"
+    },
+    {
+      "id": "governor-auto-early",
+      "passed": true,
+      "report_sha256": "0f47670fcf60558bf72dbcd87a84f313d3dcb10646d3c82829673802e49cbfbd"
+    },
+    {
+      "id": "governor-auto-late",
+      "passed": true,
+      "report_sha256": "89e19d4f2d4d03c191f085d5ae3b62b703272d9c2c475be2eb50e48fe791d784"
+    },
+    {
+      "id": "governor-auto-repeat",
+      "passed": true,
+      "report_sha256": "683530eefce3f4fa62ce6f4a23ee6abcf51bcdd04dec5382f16ab9686b60ab38"
+    },
+    {
+      "id": "governor-manual",
+      "passed": true,
+      "report_sha256": "cf0821186d0db123168779e6f6f5f492b97eaa37d450636d74f4f0d4522c48a9"
+    },
+    {
+      "id": "resize-reopen-fixed",
+      "passed": true,
+      "report_sha256": "d00cb96103a259bc29880b3a2df2cfbb7635ba977ea6328edfd5a332f14543bf"
+    },
+    {
+      "id": "resize-visible-fixed",
+      "passed": true,
+      "report_sha256": "f3e1f6be74e34b555b7707ebd8477d0116820077c33db9b86ee149eb919dcc78"
+    }
+  ],
+  "actual_window": {
+    "drag_client_from": [
+      800,
+      600
+    ],
+    "drag_client_to": [
+      669,
+      501
+    ],
+    "maximize_client": [
+      2764,
+      2073
+    ],
+    "restore_client": [
+      669,
+      501
+    ],
+    "reopen_and_scaled_mouse": true
+  },
+  "installer_tests": [
+    {
+      "id": "install",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "verify",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "idempotent-install",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "restore",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "idempotent-restore",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "reject-unknown-dll",
+      "exit_code": 1,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "reject-open-dll",
+      "exit_code": 1,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "reinstall",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    },
+    {
+      "id": "verify-reinstalled",
+      "exit_code": 0,
+      "protected_files_unchanged": true
+    }
+  ],
+  "scope_limits": [
+    "Real mouse drag verified shrinking; actual maximize button verified enlargement. CUA rejects drag endpoints outside the current screenshot bounds.",
+    "Keyboard system-menu sizing attempt did not establish a valid resize; not counted as a passed check.",
+    "No full story replay or full video playback repeated; those assets and paths unchanged."
+  ],
+  "unchanged_files": [
+    "cg.pak",
+    "data.pak",
+    "KaigenSeito.exe",
+    "script.pak",
+    "system.dll",
+    "system.pak",
+    "mpeg.pak",
+    "sound.pak"
+  ],
+  "independent_review": "Read-only source/runtime-evidence and incremental-installer review found no confirmed defect."
+}

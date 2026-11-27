@@ -24,5 +24,44 @@
       "ko.dll": "41684446eb9131052807fb7212b2d03bcdc800c2d78e86229f4ba2b987d57c2a",
       "mpeg.pak": "7882cbb9bd5f0114ac329722f91bc8714c8f28e2bee07fd99689ab7e911a83b0"
     }
+  },
+  {
+    "version": "v2026.11.26-r5",
+    "files": {
+      "cg.pak": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86",
+      "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+      "KaigenSeito.exe": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df",
+      "script.pak": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7",
+      "system.dll": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545",
+      "system.pak": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99",
+      "mpeg.pak": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724",
+      "ko.dll": "0f8b30ef8e5004ae11508c94715e6ab65d36061680cc85566f18a5667d3a9d01"
+    }
+  },
+  {
+    "version": "v2026.11.27-r5.1",
+    "files": {
+      "cg.pak": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86",
+      "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+      "KaigenSeito.exe": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df",
+      "script.pak": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7",
+      "system.dll": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545",
+      "system.pak": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99",
+      "mpeg.pak": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724",
+      "ko.dll": "333a1c230ceab26cd12acc939e3683a68f21e5edd63adeb58aa2c72d84fb69f7"
+    }
+  },
+  {
+    "version": "v2026.11.27-r5.2",
+    "files": {
+      "cg.pak": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86",
+      "data.pak": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309",
+      "KaigenSeito.exe": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df",
+      "script.pak": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7",
+      "system.dll": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545",
+      "system.pak": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99",
+      "mpeg.pak": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724",
+      "ko.dll": "19992a78fe6fb493e11319a698a738ad9eba039b81176a6dfcd03d45dc23678f"
+    }
   }
 ]

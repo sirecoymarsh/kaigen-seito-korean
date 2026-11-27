@@ -1,3 +1,5 @@
+> 과거 소형 업데이트 기록입니다. 이제는 [최신 통합 ZIP](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.3) 하나만 설치하면 됩니다.
+
 # 계엄성도 r5.1 소형 업데이트
 
 r5 통합 패치에 다음 두 수정만 추가합니다. **r5가 설치된 게임용**이며 처음 설치할 때는 r5 통합본을 먼저 설치하세요.

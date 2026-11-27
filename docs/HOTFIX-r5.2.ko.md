@@ -1,3 +1,5 @@
+> 과거 소형 업데이트 기록입니다. 이제는 [최신 통합 ZIP](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.3) 하나만 설치하면 됩니다.
+
 # 계엄성도 r5.2 소형 업데이트
 
 r5.1 설치본에 적용하는 ko.dll 차분 업데이트입니다. 처음 설치하면 r5 통합 패치 → r5.1 → r5.2 순서로 적용하세요.

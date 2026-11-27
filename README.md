@@ -1,42 +1,30 @@
 # 계엄성도 한국어 패치
 
-**v2026.11.26-r5 통합 검수판 + r5.1 · r5.2 소형 업데이트**
+**v2026.11.27-r5.3 누적 통합 설치판 — ZIP 하나로 설치·업데이트**
 
 니트로플러스 『사바토 나베』 수록 『계엄성도』 Windows판의 한국어 패치입니다. 시나리오·UI 한국어화에 탐색·전투 편의 기능, 확장 기록실, 한국어 오프닝, 최신 저장 이어하기를 통합했습니다. 전체 분기 재완주 검수는 끝나지 않아 **Pre-release**로 배포합니다.
 
-[패치 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.26-r5) · [전체 수정 사항](docs/CHANGELOG.ko.md) · [조작·모드 안내](docs/CONTROLS.md) · [검증 범위와 남은 제한](docs/STATUS.md)
-
-## r5.2 소형 업데이트
-
-[소형 업데이트 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.2) · [수정·검증 범위](docs/HOTFIX-r5.2.ko.md)
-
-오프닝 검은 화면, 크기 조절 후 전투 복귀 시 미니맵 표시 누락, 큰 창에서 타이틀 가사 자막이 잘리는 문제를 고칩니다. **r5 → r5.1 → r5.2 순서**로 설치하세요. r5.2도 `ko.dll` 변경분만 포함하며 저장·설정·영상은 바꾸지 않습니다.
-
-## r5.1 소형 업데이트
-
-[소형 업데이트 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.1) · [수정·검증 범위](docs/HOTFIX-r5.1.ko.md)
-
-부지사 자동 항복과 실제 창 테두리 크기 조절을 고칩니다. **아래 r5 통합본을 설치한 뒤** r5.1 ZIP의 `Install.cmd`를 실행하세요. 변경분은 `ko.dll` 하나이며 영상·PAK·SAVE·설정은 그대로입니다. 저장소 루트의 통합 설치기와 아래 통합본 링크는 r5 기준이고, 소형 업데이트는 `updates/r5.1`에 따로 있습니다.
+[패치 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.3) · [전체 수정 사항](docs/CHANGELOG.ko.md) · [조작·모드 안내](docs/CONTROLS.md) · [검증 범위와 남은 제한](docs/STATUS.md)
 
 ## 다운로드
 
-- `KaigenSeito-Korean-v2026.11.26-r5.zip`: 설치·검사·원본 복원 도구와 패치 차분.
-- `KaigenSeito-PV-Korean.mp4`: 별도 감상·공유용 한국어 프로모션 영상. **9,633,133바이트(9.63MB)**로 50MB 미만입니다.
-- `KaigenSeito-Changes-v2026.11.26-r5.md`: 전체 수정 사항을 따로 읽을 수 있는 문서.
+- **`KaigenSeito-Korean-v2026.11.27-r5.3.zip` 하나만 받으세요.** 한국어화·영상·편의 기능과 r5.1·r5.2 수정이 모두 포함됩니다. 이전 패치를 순서대로 설치할 필요가 없습니다.
+- [별도 감상·공유용 한국어 PV](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/download/v2026.11.26-r5/KaigenSeito-PV-Korean.mp4)는 선택 다운로드입니다. 게임용 오프닝은 통합 ZIP에 들어 있습니다.
+- 전체 수정 사항은 ZIP의 `docs/CHANGELOG.ko.md`에 들어 있습니다.
 - `SHA256SUMS.txt`: 내려받은 파일의 SHA-256.
 
 완성된 PV의 검증된 파일을 재사용하여 추가 압축에 따른 화질 손실을 피했습니다. 게임에 들어가는 오프닝은 엔진 규격의 MPEG이며 MP4와 별도입니다.
 
 ## 설치와 업데이트
 
-1. 원본 게임 또는 이 저장소의 r4a·r4b를 설치한 게임을 준비하고 종료합니다.
+1. 원본 게임 또는 이 저장소의 r4a·r4b·r5·r5.1·r5.2 설치본을 준비하고 종료합니다.
 2. 패치 ZIP을 **게임 폴더와 다른 폴더**에 풉니다.
 3. `Install.cmd`를 실행하고 `KaigenSeito.exe`가 있는 게임 폴더를 선택합니다.
 4. ‘설치 통과’가 나오면 `KaigenSeito.exe`를 실행합니다. `Verify.cmd`로 파일 일치 여부를 다시 확인할 수 있습니다.
 
 Windows 10/11 x64, Windows PowerShell 5.1 이상과 Windows 기본 글꼴 맑은 고딕을 사용합니다. Locale Emulator·일본어 시스템 로캘·설치 중 인터넷 연결은 필요하지 않습니다. Microsoft 글꼴은 배포하지 않습니다. 설치·교체 과정에는 **약 1GB의 여유 공간**을 확보하세요.
 
-r4a·r4b는 기존 원본 백업을 유지한 채 r5로 업데이트합니다. 이전 백업에 없던 `mpeg.pak`는 현재 게임의 파일이 확인된 원본과 일치할 때에만 백업에 추가합니다. 다른 비공식 수정본·개발 중간판은 자동으로 덮어쓰지 않습니다. [지원 원본 해시](docs/original-files.json)와 다른 판본에는 적용하지 않으며 링크·정션을 경유한 게임 폴더도 거부합니다.
+구버전은 기존 원본 백업을 유지한 채 최신판으로 바로 업데이트합니다. r5.2까지 적용된 게임은 이미 최신 게임 파일과 같으므로 그대로 유지합니다. 이전 백업에 없던 `mpeg.pak`는 현재 게임의 파일이 확인된 원본과 일치할 때에만 백업에 추가합니다. 다른 비공식 수정본·개발 중간판은 자동으로 덮어쓰지 않습니다. [지원 원본 해시](docs/original-files.json)와 다른 판본에는 적용하지 않으며 링크·정션을 경유한 게임 폴더도 거부합니다.
 
 ## 저장과 원본 복원
 
@@ -51,6 +39,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Patch.ps1 -Act
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Patch.ps1 -Action Verify  -GameDir 'D:\Games\KaigenSeito'
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Patch.ps1 -Action Restore -GameDir 'D:\Games\KaigenSeito'
 ```
+
+## 이번 통합판에 포함된 후속 수정
+
+부지사 자동 항복, 실제 창 테두리 크기 조절, 오프닝 검은 화면, 전투 후 미니맵 갱신, 확대 창의 가사 자막 잘림을 포함합니다. 게임 실행 파일과 자산 구성은 검증된 r5.2와 같고 배포 방식만 하나로 합쳤습니다.
 
 ## 주요 기능
 
@@ -68,6 +60,6 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Patch.ps1 -Act
 
 ## 구성과 제작 기록
 
-원본 7개 파일의 HDiffPatch 차분과 새 `ko.dll`을 제공합니다. 원본 게임 실행 파일·PAK·개인 저장은 제공하지 않습니다. 차분에도 원작에서 유래한 변경 데이터가 포함되며 별도 한국어 PV는 원작 영상·음원을 이용한 편집본입니다.
+원본에서 최신판으로 바로 적용하는 7개 HDiffPatch 차분과 최신 `ko.dll`을 제공합니다. 원본 게임 실행 파일·PAK·개인 저장은 제공하지 않습니다. 차분에도 원작에서 유래한 변경 데이터가 포함되며 별도 한국어 PV는 원작 영상·음원을 이용한 편집본입니다.
 
 공식 [HDiffPatch 5.1.3](https://github.com/sisong/HDiffPatch/releases/tag/v5.1.3)을 사용합니다. [재생성 방법](docs/BUILD.md), [외부 도구와 출처](THIRD_PARTY.md), [기여·번역 출처](docs/PROVENANCE.md)를 참고하세요. 번역·후속 한국어 문구는 **Codex internal**, r4b 검수 수정은 Claude, 하나치라스 요약 초안은 사용자가 제공한 Gemini 작성본이며 Codex가 사실관계 검수와 통합을 담당했습니다.
