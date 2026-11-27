@@ -1,0 +1,88 @@
+{
+  "version": "v2026.11.27-r5.2",
+  "dll_sha256": "19992a78fe6fb493e11319a698a738ad9eba039b81176a6dfcd03d45dc23678f",
+  "movie": {
+    "unchanged_mpeg": true,
+    "native_directshow": true,
+    "renderer": "Windows Video Renderer, IDirectDrawVideo SetSwitches(AMDDS_NONE), per graph only",
+    "natural_title_return_seconds": 123.782,
+    "during_playback_client_sizes": [
+      [
+        800,
+        600
+      ],
+      [
+        640,
+        480
+      ],
+      [
+        1600,
+        1200
+      ],
+      [
+        1000,
+        750
+      ]
+    ],
+    "starts_enlarged": [
+      1600,
+      1200
+    ],
+    "first_escape_confirmation": true,
+    "mouse_does_not_skip": true,
+    "title_mouse_load_after_skip": true,
+    "frame_drop_and_jitter_measurement": false
+  },
+  "map": {
+    "native_battle_win_without_movement": true,
+    "old_640_dirty": [
+      300,
+      400,
+      640,
+      480
+    ],
+    "fixed_640_dirty": [
+      240,
+      320,
+      629,
+      464
+    ],
+    "fixed_1600_dirty": [
+      600,
+      800,
+      1572,
+      1160
+    ],
+    "scaled_minimap_route_and_arrow": [
+      640,
+      1600
+    ]
+  },
+  "other_output": {
+    "title_subtitles_large_and_small": true,
+    "survival_hud_large": true,
+    "scaled_native_load_pointer": true,
+    "scaled_config_dialog": true,
+    "maximize_restore": [
+      640,
+      1600
+    ],
+    "source_audit": "4 native BitBlt sites, 2 native whole-window InvalidateRect sites, 8 minimap invalidations, title lyrics clipping; independent dialog, tooltip and HUD coordinate paths"
+  },
+  "limits": [
+    "No new full-story branch replay.",
+    "Two test-harness predicates were invalid (title L shortcut / map-style wait flag, settings dialog lookup after previous modal); those were replaced by passing native pointer and independent dialog cases. Video natural completion and overlay pixel evidence were retained."
+  ],
+  "translator_model": "Codex internal",
+  "installer": {
+    "install_verify_idempotence_restore_reinstall": true,
+    "protected_files_actual": 104,
+    "protected_unchanged": true
+  },
+  "independent_source_review": "PASS: COM lifetime/scope, scaling paths and both original whole-window invalidation call sites",
+  "references": [
+    "https://learn.microsoft.com/en-us/windows/win32/directshow/video-renderer-filter",
+    "https://learn.microsoft.com/en-us/previous-versions/windows/embedded/aa451797(v=msdn.10)",
+    "https://learn.microsoft.com/en-us/windows/win32/api/strmif/nf-strmif-ifiltergraph-addfilter"
+  ]
+}

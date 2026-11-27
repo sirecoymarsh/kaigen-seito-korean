@@ -1,10 +1,16 @@
 # 계엄성도 한국어 패치
 
-**v2026.11.26-r5 통합 검수판 + v2026.11.27-r5.1 소형 업데이트**
+**v2026.11.26-r5 통합 검수판 + r5.1 · r5.2 소형 업데이트**
 
 니트로플러스 『사바토 나베』 수록 『계엄성도』 Windows판의 한국어 패치입니다. 시나리오·UI 한국어화에 탐색·전투 편의 기능, 확장 기록실, 한국어 오프닝, 최신 저장 이어하기를 통합했습니다. 전체 분기 재완주 검수는 끝나지 않아 **Pre-release**로 배포합니다.
 
 [패치 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.26-r5) · [전체 수정 사항](docs/CHANGELOG.ko.md) · [조작·모드 안내](docs/CONTROLS.md) · [검증 범위와 남은 제한](docs/STATUS.md)
+
+## r5.2 소형 업데이트
+
+[소형 업데이트 다운로드](https://github.com/sirecoymarsh/kaigen-seito-korean/releases/tag/v2026.11.27-r5.2) · [수정·검증 범위](docs/HOTFIX-r5.2.ko.md)
+
+오프닝 검은 화면, 크기 조절 후 전투 복귀 시 미니맵 표시 누락, 큰 창에서 타이틀 가사 자막이 잘리는 문제를 고칩니다. **r5 → r5.1 → r5.2 순서**로 설치하세요. r5.2도 `ko.dll` 변경분만 포함하며 저장·설정·영상은 바꾸지 않습니다.
 
 ## r5.1 소형 업데이트
 

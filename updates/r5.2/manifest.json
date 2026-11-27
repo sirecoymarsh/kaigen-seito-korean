@@ -1,0 +1,72 @@
+{
+  "schema": "kaigen-seito-r5-hotfix-v1",
+  "version": "v2026.11.27-r5.2",
+  "requires": "v2026.11.27-r5.1",
+  "translator_model": "Codex internal",
+  "files": [
+    {
+      "path": "ko.dll",
+      "payload": "patches/ko.dll.hdiff",
+      "source": {
+        "size": 45675008,
+        "sha256": "333a1c230ceab26cd12acc939e3683a68f21e5edd63adeb58aa2c72d84fb69f7"
+      },
+      "target": {
+        "size": 45676544,
+        "sha256": "19992a78fe6fb493e11319a698a738ad9eba039b81176a6dfcd03d45dc23678f"
+      },
+      "patch": {
+        "size": 21680,
+        "sha256": "913f8135de32fefd4187ef885c95a27ab84165ee19ad86a05cf877f818086dc0"
+      }
+    }
+  ],
+  "unchanged": [
+    {
+      "path": "cg.pak",
+      "size": 138176908,
+      "sha256": "d50ffa47714cd24f3123559956c92f5ff737a20f9076a44d59551a3b738e6b86"
+    },
+    {
+      "path": "data.pak",
+      "size": 6699371,
+      "sha256": "304d80c9592f4b8cd3139ba497eaa99ed7ea2b6959c2c2c8cdef747e55465309"
+    },
+    {
+      "path": "KaigenSeito.exe",
+      "size": 155648,
+      "sha256": "c34b4d08250d14e955cbbe010e557b0ca22be2687c2f75d57c1eda3a784d65df"
+    },
+    {
+      "path": "script.pak",
+      "size": 1419760,
+      "sha256": "aba35ec3ebb2c3df56ed38aae3beef8bd90f6f387dc68c76de688d18ceb986e7"
+    },
+    {
+      "path": "system.dll",
+      "size": 1028096,
+      "sha256": "9cf81e38767c540f520ad34b0ba79737d702b215b301bce8316d52e5d03ce545"
+    },
+    {
+      "path": "system.pak",
+      "size": 1057361,
+      "sha256": "2d23e8c9371c319e569ebb0db67cf72b0033411e8949bfc1e476b922217a5a99"
+    },
+    {
+      "path": "mpeg.pak",
+      "size": 103477935,
+      "sha256": "719fac8e471d2f78d91dd560641d4ef530128f4c77f5cf547bc1b2fc6e0f8724"
+    },
+    {
+      "path": "sound.pak",
+      "sha256": "a47cd54363b5944e9be2c43bc4eb5bc4fa173ad6a143e04054d9aab53c8b9364",
+      "size": 66344912
+    }
+  ],
+  "patcher": {
+    "path": "tools/hpatchz.exe",
+    "version": "HDiffPatch 5.1.3 windows64",
+    "size": 515072,
+    "sha256": "9703c694b5955c576d9f0e26e98b60941f0bbb53b382b1f1988d75d461e580cb"
+  }
+}
